@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="row">
+   <h2><i class="fa-solid fa-user-plus me-4 fa-1x"></i>Add Contact Management</h2>
+    <!-- dummy data -->
+    <p style="text-align: justify; margin-top: 30px;">
+       This is a dummy data.
+       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit sunt minus eligendi necessitatibus. Optio dolore voluptatem totam minus. Illo minima deserunt, et provident ipsam consequuntur ipsum vitae debitis accusamus doloribus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita repellendus ducimus adipisci eum sequi magni, quis soluta accusantium facilis alias! Debitis, alias velit quae obcaecati a unde placeat cum quaerat?
+       Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit cum corrupti quas aperiam, voluptatibus fuga eos est omnis architecto. Neque porro placeat distinctio minima rerum blanditiis nobis excepturi adipisci odit.
+   </p>
+    </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- form -->
+                <form #addContactForm="ngForm" class="border p-3">
+                <div class="mb-2">
+                    <input type="text" name="id" #id="ngModel" patt [(ngModel)]="contact.id" placeholder="Enter the contact Id" class="form-control" required>
+                </div>
+
+                <div *ngIf="id.invalid && id.touched" class="text-danger mb-2">Invalid Id</div>
+
+                <div class="mb-2"><input type="text" #name="ngModel" name="name" [(ngModel)]="contact.name" placeholder="Enter the Name" class="form-control" required></div>
+                <div *ngIf="name.invalid && name.touched" class="text-danger mb-2">enter the name</div>
+
+                <div class="mb-2"><input type="text" #photo="ngModel" name="photo" [(ngModel)]="contact.photo" placeholder="Enter the image URL" class="form-control"required></div>
+                <div *ngIf="photo.invalid && photo.touched" class="text-danger mb-2">enter the valid url</div>
+
+                <div class="mb-2"><input type="email" email #email="ngModel" name="email" [(ngModel)]="contact.email" placeholder="Enter the email" class="form-control" required></div>
+                <div *ngIf="email.invalid && email.touched" class="text-danger mb-2">enter the valid email</div>
+
+                <div class="mb-2"><input type="text" minlength="10" maxlength="10" pattern="[0-9]*" #mobile="ngModel" name="mobile" [(ngModel)]="contact.mobile" placeholder="Enter the number" class="form-control" required></div>
+                <div *ngIf="mobile.invalid && mobile.touched" class="text-danger mb-2">enter the valid mobile number</div>
+
+                <div class="mb-2"><input type="text" #company="ngModel" name="company" [(ngModel)]="contact.company" placeholder="Enter the Company" class="form-control" required></div>
+                <div *ngIf="company.invalid && company.touched" class="text-danger mb-2">enter the company name</div>
+
+                <div class="mb-2"><input type="text" #title="ngModel" name="company" [(ngModel)]="contact.title" placeholder="Enter the title" class="form-control" required></div>
+                <div *ngIf="title.invalid && title.touched" class="text-danger mb-2">enter the title</div>
+
+
+                <!-- group -->
+                    <div class="md-2">
+                        <select name="groupId" #groupId="ngModel" pattern="[0-9]" [(ngModel)]="contact.groupId" class="form-control" required>
+                            <option selected hidden disabled>{{contact.groupId}}</option>
+                            <option [value]="group.id" *ngFor="let group of groups">{{group.name}}</option>
+                            
+                        </select>
+                    </div>
+                    <div *ngIf="groupId.invalid && groupId.touched" class="text-danger mb-2">enter the valid group</div>
+
+                   
+                    <!-- add button -->
+                    <div class="mb-2 mt-3">
+                        <input [disabled]="addContactForm.invalid" (click)="addContact(contact)" type="button" value="Create" class="btn btn-success">
+                        <a class="btn btn-warning ms-3" routerLink="">Close</a>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-6">
+               <!-- image -->
+    <img  width="250px" height="250px" class="mt-5" [src]="contact.photo" alt="contact image">
+</div>
+    </div>
+     </div>
+
